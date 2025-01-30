@@ -14,7 +14,7 @@ MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 
 # Archivos fuente
-SRCS = main.c fractol.c errors.c draw.c utils.c events.c
+SRCS = main.c init.c errors.c render.c utils.c events.c
 
 # Objetos
 OBJS = $(SRCS:.c=.o)

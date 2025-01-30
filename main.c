@@ -2,22 +2,22 @@
 
 int	main(int argc, char *argv[])
 {
-	t_fractol	fractol;
+	t_app	app;
 
-	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10)) || (argc == 4
-			&& !ft_strncmp(argv[1], "julia", 5)))
+	if ((argc == 2 && !ft_strcmp(argv[1], "mandelbrot")) || (argc == 4
+			&& !ft_strcmp(argv[1], "julia")))
 	{
-	  fractol.name = argv[1];
-    fractol.julia_x = string_to_double(argv[2]);
-    fractol.julia_y = string_to_double(argv[3]);
-		start_fractol(&fractol);
-		draw_fractol(&fractol);
-		mlx_loop(fractol.mlx);
+		app.fractal_type = argv[1];
+		init_app(&app);
+		if (!ft_strcmp(argv[1], "julia"))
+		{
+			app.viewport.julia_real = parse_double(argv[2]);
+			app.viewport.julia_imag = parse_double(argv[3]);
+		}
+		render_fractal(&app);
+		mlx_loop(app.mlx);
 	}
 	else
-	{
-		ft_putstr_fd("Incorrect input\n", STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+		print_usage();
 	return (0);
 }

@@ -1,57 +1,57 @@
 #include "fractol.h"
 
-int	handle_close(t_fractol *fractol)
+int	on_window_close(t_app *app)
 {
-	mlx_destroy_image(fractol->mlx, fractol->image.img_ptr);
-	mlx_destroy_window(fractol->mlx, fractol->win);
+	mlx_destroy_image(app->mlx, app->image.ptr);
+	mlx_destroy_window(app->mlx, app->window);
 	// mlx_destroy_display(); Only for linux
-	free(fractol->mlx);
+	free(app->mlx);
 	exit(EXIT_SUCCESS);
 }
 
-int	handle_key(int key_code, t_fractol *fractol)
+int	on_key_press(int key, t_app *app)
 {
-	if (key_code == ESC_KEY)
-		handle_close(fractol);
-	else if (key_code == RIGHT_KEY)
-		fractol->shift_x += (0.5 * fractol->zoom);
-	else if (key_code == LEFT_KEY)
-		fractol->shift_x -= (0.5 * fractol->zoom);
-	else if (key_code == UP_KEY)
-		fractol->shift_y +=(0.5 * fractol->zoom);
-	else if (key_code == DOWN_KEY)
-		fractol->shift_y -= (0.5 * fractol->zoom);
-	else if (key_code == PLUS_KEY)
-		fractol->iterations_definiton += 10;
-	else if (key_code == MINUS_KEY)
-		fractol->iterations_definiton -= 10;
-	draw_fractol(fractol);
+	const double	move_speed = 0.1 * app->viewport.scale;
+
+	if (key == KEY_ESC)
+		return (on_window_close(app));
+	else if (key == KEY_LEFT)
+		app->viewport.center_x -= move_speed;
+	else if (key == KEY_RIGHT)
+		app->viewport.center_x += move_speed;
+	else if (key == KEY_UP)
+		app->viewport.center_y -= move_speed;
+	else if (key == KEY_DOWN)
+		app->viewport.center_y += move_speed;
+	else if (key == KEY_PLUS)
+		app->viewport.max_iter += 10;
+	else if (key == KEY_MINUS && app->viewport.max_iter > 10)
+		app->viewport.max_iter -= 10;
+	render_fractal(app);
 	return (0);
 }
 
-int	handle_mouse(int button, int x, int y, t_fractol *fractol)
+int	on_mouse_scroll(int button, int x, int y, t_app *app)
 {
-	if (button == Button5)
-	{
-		// Zoom out
-    fractol->zoom *= 1.05;
-	}
-	else if (button == Button4)
-	{
-		// Zoom in
-    fractol->zoom *= 0.95;
-	}
-	draw_fractol(fractol);
+	const double	zoom_factor = 1.1;
+
+	(void)x;
+	(void)y;
+	if (button == Button4) // Zoom in
+		app->viewport.scale *= 1.0 / zoom_factor;
+	else if (button == Button5) // Zoom out
+		app->viewport.scale *= zoom_factor;
+	render_fractal(app);
 	return (0);
 }
 
-int handle_julia(int x, int y, t_fractol *fractol)
+int	on_mouse_move(int x, int y, t_app *app)
 {
-  if(!ft_strncmp(fractol->name, "julia", 5))
-  {
-    fractol->julia_x = scale_value(x, 0, WIDTH, -2, 2) * fractol->zoom + fractol->shift_x;
-    fractol->julia_y = scale_value(x, 0, HEIGHT, 2, -2) * fractol->zoom + fractol->shift_y;
-  }
-  draw_fractol(fractol);
-  return 0;
+	if (!ft_strcmp(app->fractal_type, "julia"))
+	{
+		app->viewport.julia_real = map_range(x, 0, WINDOW_WIDTH, -2, 2);
+		app->viewport.julia_imag = map_range(y, 0, WINDOW_HEIGHT, -2, 2);
+		render_fractal(app);
+	}
+	return (0);
 }
