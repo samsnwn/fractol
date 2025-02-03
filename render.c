@@ -53,20 +53,25 @@ static int	get_iterations(t_complex c, t_viewport *view, const char *type)
 
 void	render_fractal(t_app *app)
 {
-	int y = 0;
+	int y;
+	int x;
+	t_complex c;
+	int iterations;
+	int color;
+
+	y = 0;
 	while (y < WINDOW_HEIGHT)
 	{
-		int x = 0;
+		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			t_complex c;
 			c.real = map_range(x, 0, WINDOW_WIDTH, -2 * app->viewport.scale, 2
 					* app->viewport.scale) + app->viewport.center_x;
 			c.imag = map_range(y, 0, WINDOW_HEIGHT, -2 * app->viewport.scale, 2
 					* app->viewport.scale) + app->viewport.center_y;
-			int iterations = get_iterations(c, &app->viewport,
+			iterations = get_iterations(c, &app->viewport,
 					app->fractal_type);
-			int color = calculate_color(iterations, app->viewport.max_iter);
+			color = calculate_color(iterations, app->viewport.max_iter);
 			put_pixel(&app->image, x, y, color);
 			x++;
 		}

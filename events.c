@@ -11,8 +11,9 @@ int	on_window_close(t_app *app)
 
 int	on_key_press(int key, t_app *app)
 {
-	const double	move_speed = 0.1 * app->viewport.scale;
+	double	move_speed;
 
+	move_speed = 0.1 * app->viewport.scale;
 	if (key == KEY_ESC)
 		return (on_window_close(app));
 	else if (key == KEY_LEFT)
