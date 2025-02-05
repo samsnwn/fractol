@@ -80,6 +80,12 @@ typedef struct s_complex
 	double		imag;
 }				t_complex;
 
+typedef struct s_range
+{
+	double	min;
+	double	max;
+}	t_range;
+
 // Core functions
 void			init_app(t_app *app);
 void			render_fractal(t_app *app);
@@ -91,9 +97,8 @@ int				on_mouse_move(int x, int y, t_app *app);
 int				on_close(t_app *app);
 
 // Math utilities
-t_complex		complex_add(t_complex a, t_complex b);
-t_complex		complex_multiply(t_complex a, t_complex b);
-double			map_range(double val, double in_min, double in_max, double out_min, double out_max);
+double			normalize(double val, t_range in);
+double			map_range(double normalized_val, t_range out);
 double			parse_double(char *str);
 
 void			print_usage(void);

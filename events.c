@@ -60,10 +60,18 @@ int	on_mouse_scroll(int button, int x, int y, t_app *app)
 
 int	on_mouse_move(int x, int y, t_app *app)
 {
+	t_range	screen;
+	t_range	fractal;
+
 	if (!ft_strcmp(app->fractal_type, "julia"))
 	{
-		app->viewport.julia_real = map_range(x, 0, WINDOW_WIDTH, -2, 2);
-		app->viewport.julia_imag = map_range(y, 0, WINDOW_HEIGHT, -2, 2);
+		screen = (t_range){0, WINDOW_WIDTH};
+		fractal = (t_range){-2, 2};
+		app->viewport.julia_real = map_range(normalize(x, screen), fractal);
+
+		screen = (t_range){0, WINDOW_HEIGHT};
+		app->viewport.julia_imag = map_range(normalize(y, screen), fractal);
+		
 		render_fractal(app);
 	}
 	return (0);
