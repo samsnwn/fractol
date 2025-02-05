@@ -82,7 +82,7 @@ int				on_window_close(t_app *app);
 t_complex		complex_add(t_complex a, t_complex b);
 t_complex		complex_multiply(t_complex a, t_complex b);
 double			map_range(double val, double in_min, double in_max, double out_min, double out_max);
-double			parse_double(const char *str);
+double			parse_double(char *str);
 
 void			print_usage(void);
 void			free_exit(void *mlx, char *message);

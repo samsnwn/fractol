@@ -24,7 +24,7 @@ static int	calculate_color(int iterations, int max_iterations)
 	return ((r << 16) | (g << 8) | b);
 }
 
-static int	get_iterations(t_complex c, t_viewport *view, const char *type)
+static int	get_iterations(t_complex c, t_viewport *view, char *type)
 {
 	t_complex	z;
 	t_complex	julia;

@@ -18,7 +18,7 @@ double	map_range(double val, double in_min, double in_max, double out_min,
 			- in_min));
 }
 
-double	parse_double(const char *str)
+double	parse_double(char *str)
 {
 	double result = 0.0;
 	double fraction = 0.1;
