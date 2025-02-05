@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 12:15:31 by samcasti          #+#    #+#             */
-/*   Updated: 2024/04/26 11:56:04 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:15:42 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_list
 }					t_list;
 
 int					ft_atoi(const char *str);
-long 				ft_atol(const char *str);
+long				ft_atol(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 int					ft_isalpha(int c);

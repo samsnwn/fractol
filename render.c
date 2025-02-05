@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 18:14:27 by samcasti          #+#    #+#             */
+/*   Updated: 2025/02/05 18:14:30 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 static void	put_pixel(t_image *image, int x, int y, int color)
@@ -53,11 +65,11 @@ static int	get_iterations(t_complex c, t_viewport *view, char *type)
 
 void	render_fractal(t_app *app)
 {
-	int y;
-	int x;
-	t_complex c;
-	int iterations;
-	int color;
+	int			y;
+	int			x;
+	t_complex	c;
+	int			iterations;
+	int			color;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)

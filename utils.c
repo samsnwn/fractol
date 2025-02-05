@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 18:09:53 by samcasti          #+#    #+#             */
+/*   Updated: 2025/02/05 18:09:55 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 t_complex	complex_add(t_complex a, t_complex b)
@@ -20,11 +32,15 @@ double	map_range(double val, double in_min, double in_max, double out_min,
 
 double	parse_double(char *str)
 {
-	double result = 0.0;
-	double fraction = 0.1;
-	int sign = 1;
-	int i = 0;
+	double		result;
+	double		fraction;
+	int			sign;
+	int			i;
 
+	result = 0.0;
+	fraction = 0.1;
+	sign = 1;
+	i = 0;
 	if (str[i] == '-' && str[i + 1])
 	{
 		sign = -1;

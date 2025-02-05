@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 18:07:04 by samcasti          #+#    #+#             */
+/*   Updated: 2025/02/05 18:11:56 by samcasti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
 # include "./libft/include/libft.h"
-# include "./minilibx_macos/mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -29,8 +41,8 @@
 #  define KEY_RIGHT 65363
 #  define KEY_UP 65362
 #  define KEY_DOWN 65364
-#  define KEY_PLUS 61
-#  define KEY_MINUS 45
+#  define KEY_PLUS 65451
+#  define KEY_MINUS 65453
 #  define KEY_ESC 65307
 # endif
 
@@ -76,7 +88,7 @@ void			render_fractal(t_app *app);
 int				on_key_press(int key, t_app *app);
 int				on_mouse_scroll(int button, int x, int y, t_app *app);
 int				on_mouse_move(int x, int y, t_app *app);
-int				on_window_close(t_app *app);
+int				on_close(t_app *app);
 
 // Math utilities
 t_complex		complex_add(t_complex a, t_complex b);
