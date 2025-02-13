@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:10:35 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/05 18:11:45 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:55:18 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,5 @@ int	on_mouse_scroll(int button, int x, int y, t_app *app)
 	else if (button == Button5)
 		app->viewport.scale *= zoom_factor;
 	render_fractal(app);
-	return (0);
-}
-
-int	on_mouse_move(int x, int y, t_app *app)
-{
-	t_range	screen;
-	t_range	fractal;
-
-	if (!ft_strcmp(app->fractal_type, "julia"))
-	{
-		screen = (t_range){0, WINDOW_WIDTH};
-		fractal = (t_range){-2, 2};
-		app->viewport.julia_real = map_range(normalize(x, screen), fractal);
-
-		screen = (t_range){0, WINDOW_HEIGHT};
-		app->viewport.julia_imag = map_range(normalize(y, screen), fractal);
-		
-		render_fractal(app);
-	}
 	return (0);
 }

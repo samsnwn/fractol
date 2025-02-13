@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:12:08 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/05 18:12:11 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:46:01 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	setup_events(t_app *app)
 	mlx_hook(app->window, KeyPress, KeyPressMask, on_key_press, app);
 	mlx_hook(app->window, ButtonPress, ButtonPressMask, on_mouse_scroll, app);
 	mlx_hook(app->window, DestroyNotify, StructureNotifyMask, on_close, app);
-	mlx_hook(app->window, MotionNotify, PointerMotionMask, on_mouse_move, app);
 }
 
 void	init_app(t_app *app)

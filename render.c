@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:14:27 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/05 18:14:30 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:43:41 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,8 @@ void	render_fractal(t_app *app)
 			screen = (t_range){0, WINDOW_WIDTH};
 			fractal = (t_range){-2 * app->viewport.scale, 2 * app->viewport.scale};
 			c.real = map_range(normalize(x, screen), fractal) + app->viewport.center_x;
-			
 			screen = (t_range){0, WINDOW_HEIGHT};
-			c.imag = map_range(normalize(y, screen), fractal) + app->viewport.center_y;
-			
+			c.imag = map_range(normalize(y, screen), fractal) + app->viewport.center_y;	
 			iterations = get_iterations(c, &app->viewport, app->fractal_type);
 			color = calculate_color(iterations, app->viewport.max_iter);
 			put_pixel(&app->image, x, y, color);

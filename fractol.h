@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:07:04 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/05 18:11:56 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:46:09 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void			render_fractal(t_app *app);
 // Event handlers
 int				on_key_press(int key, t_app *app);
 int				on_mouse_scroll(int button, int x, int y, t_app *app);
-int				on_mouse_move(int x, int y, t_app *app);
 int				on_close(t_app *app);
 
 // Math utilities

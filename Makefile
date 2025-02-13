@@ -7,6 +7,7 @@ LIBFT_DIR = ./libft
 
 MLX_FLAGS = -L$(MLX_DIR) -lmlx_Linux -lX11 -lXext
 LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c init.c errors.c render.c utils.c events.c
 
