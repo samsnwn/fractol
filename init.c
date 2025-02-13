@@ -6,16 +6,16 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:12:08 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/06 12:46:01 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:23:48 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	setup_viewport(t_viewport *view)
+static void	setup_viewport(t_view *view)
 {
-	view->center_x = 0.0;
-	view->center_y = 0.0;
+	view->x = 0.0;
+	view->y = 0.0;
 	view->scale = 1.0;
 	view->max_iter = MAX_ITERATIONS;
 }
@@ -48,6 +48,6 @@ void	init_app(t_app *app)
 	}
 	app->image.buffer = mlx_get_data_addr(app->image.ptr, &app->image.bpp,
 			&app->image.length, &app->image.endian);
-	setup_viewport(&app->viewport);
+	setup_viewport(&app->view);
 	setup_events(app);
 }

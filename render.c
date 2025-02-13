@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:14:27 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/06 12:43:41 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:24:07 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	calculate_color(int iterations, int max_iterations)
 	return ((r << 16) | (g << 8) | b);
 }
 
-static int	get_iterations(t_complex c, t_viewport *view, char *type)
+static int	get_iterations(t_complex c, t_view *view, char *type)
 {
 	t_complex	z;
 	t_complex	julia;
@@ -80,12 +80,12 @@ void	render_fractal(t_app *app)
 		while (++x < WINDOW_WIDTH)
 		{
 			screen = (t_range){0, WINDOW_WIDTH};
-			fractal = (t_range){-2 * app->viewport.scale, 2 * app->viewport.scale};
-			c.real = map_range(normalize(x, screen), fractal) + app->viewport.center_x;
+			fractal = (t_range){-2 * app->view.scale, 2 * app->view.scale};
+			c.real = map_range(normalize(x, screen), fractal) + app->view.x;
 			screen = (t_range){0, WINDOW_HEIGHT};
-			c.imag = map_range(normalize(y, screen), fractal) + app->viewport.center_y;	
-			iterations = get_iterations(c, &app->viewport, app->fractal_type);
-			color = calculate_color(iterations, app->viewport.max_iter);
+			c.imag = map_range(normalize(y, screen), fractal) + app->view.y;
+			iterations = get_iterations(c, &app->view, app->fractal_type);
+			color = calculate_color(iterations, app->view.max_iter);
 			put_pixel(&app->image, x, y, color);
 		}
 	}

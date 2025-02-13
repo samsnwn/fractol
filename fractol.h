@@ -6,7 +6,7 @@
 /*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:07:04 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/06 12:46:09 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:23:25 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ typedef struct s_image
 	int			endian;
 }				t_image;
 
-typedef struct s_viewport
+typedef struct s_view
 {
-	double		center_x;
-	double		center_y;
+	double		x;
+	double		y;
 	double		scale;
 	int			max_iter;
 	double		julia_real;
 	double		julia_imag;
-}				t_viewport;
+}				t_view;
 
 typedef struct s_app
 {
@@ -71,7 +71,7 @@ typedef struct s_app
 	void		*window;
 	char		*fractal_type;
 	t_image		image;
-	t_viewport	viewport;
+	t_view	view;
 }				t_app;
 
 typedef struct s_complex

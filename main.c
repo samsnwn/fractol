@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samcasti <samcasti@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: samcasti <samcasti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:12:23 by samcasti          #+#    #+#             */
-/*   Updated: 2025/02/05 18:12:25 by samcasti         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:23:56 by samcasti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int argc, char *argv[])
 		init_app(&app);
 		if (!ft_strcmp(argv[1], "julia"))
 		{
-			app.viewport.julia_real = parse_double(argv[2]);
-			app.viewport.julia_imag = parse_double(argv[3]);
+			app.view.julia_real = parse_double(argv[2]);
+			app.view.julia_imag = parse_double(argv[3]);
 		}
 		render_fractal(&app);
 		mlx_loop(app.mlx);
