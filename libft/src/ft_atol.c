@@ -12,22 +12,11 @@
 
 #include "libft.h"
 
-long	ft_atol(const char *str)
+static long	convert_number(const char *str, int sign)
 {
-	long		result;
-	int			sign;
+	long	result;
 
 	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
 	while (*str)
 	{
 		if (*str < '0' || *str > '9')
@@ -43,4 +32,21 @@ long	ft_atol(const char *str)
 		str++;
 	}
 	return (result * sign);
+}
+
+long	ft_atol(const char *str)
+{
+	int		sign;
+
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	return (convert_number(str, sign));
 }

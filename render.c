@@ -63,31 +63,35 @@ static int	get_iterations(t_complex c, t_view *view, char *type)
 	return (view->max_iter);
 }
 
-void	render_fractal(t_app *app)
+static void	calculate_pixel(t_app *app, int x, int y)
 {
-	int			y;
-	int			x;
 	t_complex	c;
 	int			iterations;
 	int			color;
 	t_range		screen;
 	t_range		fractal;
 
+	screen = (t_range){0, WINDOW_WIDTH};
+	fractal = (t_range){-2 * app->view.scale, 2 * app->view.scale};
+	c.real = map_range(normalize(x, screen), fractal) + app->view.x;
+	screen = (t_range){0, WINDOW_HEIGHT};
+	c.imag = map_range(normalize(y, screen), fractal) + app->view.y;
+	iterations = get_iterations(c, &app->view, app->fractal_type);
+	color = calculate_color(iterations, app->view.max_iter);
+	put_pixel(&app->image, x, y, color);
+}
+
+void	render_fractal(t_app *app)
+{
+	int	y;
+	int	x;
+
 	y = -1;
 	while (++y < WINDOW_HEIGHT)
 	{
 		x = -1;
 		while (++x < WINDOW_WIDTH)
-		{
-			screen = (t_range){0, WINDOW_WIDTH};
-			fractal = (t_range){-2 * app->view.scale, 2 * app->view.scale};
-			c.real = map_range(normalize(x, screen), fractal) + app->view.x;
-			screen = (t_range){0, WINDOW_HEIGHT};
-			c.imag = map_range(normalize(y, screen), fractal) + app->view.y;
-			iterations = get_iterations(c, &app->view, app->fractal_type);
-			color = calculate_color(iterations, app->view.max_iter);
-			put_pixel(&app->image, x, y, color);
-		}
+			calculate_pixel(app, x, y);
 	}
 	mlx_put_image_to_window(app->mlx, app->window, app->image.ptr, 0, 0);
 }
